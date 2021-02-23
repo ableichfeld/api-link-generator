@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Link Generator</title>
+    <style>
+      body{
+        margin: 25px;
+      }
+
+      input{
+        width: 250px;
+        margin-bottom: 15px;
+      }
+
+      #resultBox{
+        background-color: #e1e1e1;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        margin-top: 40px;
+      }
+
+      #resultLabel{
+        margin: 0px;
+      }
+
+      #result{
+        margin-top: 0px;
+      }
+
+    </style>
+    <script>
+      var email;
+      var key;
+      var param;
+      var bdate;
+      var edate;
+      var state;
+      var county;
+      var site;
+      var result;
+
+      function generateResult(){
+        email = document.getElementById('email').value;
+        key = document.getElementById('key').value;
+        param = document.getElementById('param').value;
+        bdate = document.getElementById('bdate').value;
+        edate = document.getElementById('edate').value;
+        state = document.getElementById('state').value;
+        county = document.getElementById('county').value;
+        site = document.getElementById('site').value;
+        result = "https://aqs.epa.gov/data/api/dailyData/bySite?email=" + email + "&key=" + key + "&amp;param=" + param + "&bdate=" + bdate + "&edate=" + edate + "&state=" + state + "&county=" + county + "&site=" + site;
+
+        document.getElementById('result').innerHTML = result;
+        document.execCommand("copy");
+      }
+    </script>
+  </head>
+  <body>
+    <label for="email">Email:</label>
+    <input type="text" name="email" id="email" value="bleichfeld.a@northeastern.edu" placeholder="probably bleichfeld.a@northeastern.edu"><br>
+    <label for="key">Key:</label>
+    <input type="text" name="key" id="key" value="tawnykit82" placeholder="probably tawnykit82"><br>
+    <label for="param">Parameter (pollutant type, etc.):</label>
+    <input type="text" name="param" id="param" value="42602" placeholder="probably 42602 (for NO2)"><br>
+    <label for="bdate">Start date of request (yyyymmdd):</label>
+    <input type="text" name="bdate" id="bdate"><br>
+    <label for="edate">End date of request (must be less than 1 year for daily data) (yyyymmdd):</label>
+    <input type="text" name="edate" id="edate"><br>
+    <label for="state">State code:</label>
+    <input type="text" name="state" id="state" placeholder="probably 25 (for MA)"><br>
+    <label for="county">County code:</label>
+    <input type="text" name="county" id="county" placeholder="probably 025 (for Suffolk)"><br>
+    <label for="site">Site code:</label>
+    <input type="text" name="site" id="site" placeholder="probably 0042 (for Dudley Square)"><br>
+    <button onclick="generateResult()">Generate link</button>
+    <div id="resultBox">
+      <p id="resutLabel"><b>Link:</b></p>
+      <i><p id="result">LINK WILL LOAD HERE</p></i>
+    </div>
+  </body>
+</html>
